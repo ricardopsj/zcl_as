@@ -1,33 +1,41 @@
-class ZCL_AS definition
+class zcl_as definition
   public
   create public .
 
-public section.
+  public section.
 
-  types:
-    tyt_string type table of string .
+    types:
+      tyt_string type table of string .
 
-  class-methods EXECUTE
-    importing
-      !CMD type CLIKE
-    exporting
-      !RSL type TYT_STRING
-    returning
-      value(SRC) type SYSUBRC .
+    class-methods execute
+      importing
+        !cmd       type clike
+      exporting
+        !rsl       type tyt_string
+      returning
+        value(src) type sysubrc .
+
+    class-methods get_user_dir
+      importing
+        !alias         type clike
+      returning
+        value(dirname) type user_dir-dirname .
+
+
   protected section.
-private section.
+  private section.
 
-  types:
-    begin of tys_kernel_version
-               , key(21) type c
-               , data(69) type c
-               , end of tys_kernel_version .
-  types:
-    tyt_kernel_version type standard table of tys_kernel_version .
+    types:
+      begin of tys_kernel_version
+                 , key(21) type c
+                 , data(69) type c
+                 , end of tys_kernel_version .
+    types:
+      tyt_kernel_version type standard table of tys_kernel_version .
 
-  class-data KERNEL_VERSION type TYT_KERNEL_VERSION .
+    class-data kernel_version type tyt_kernel_version .
 
-  class-methods GET_KERNEL_VERSION .
+    class-methods get_kernel_version .
 ENDCLASS.
 
 
@@ -55,5 +63,14 @@ CLASS ZCL_AS IMPLEMENTATION.
                   field 'VERSION'
                      id 'TABLE' field kernel_version.
     endif.
+  endmethod.
+
+
+  method get_user_dir.
+    select single dirname
+      into dirname
+      from user_dir
+     where aliass eq alias.
+*  dirname = dirname && dir_sep( ) && sy-sysid.
   endmethod.
 ENDCLASS.

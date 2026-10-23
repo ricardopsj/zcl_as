@@ -11,31 +11,25 @@
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
-   <DESCRIPTIONS_CLASS>
-    <SEOCLASSTX>
-     <LANGU>S</LANGU>
-     <DESCRIPT>Utilidades App Server</DESCRIPT>
-    </SEOCLASSTX>
-   </DESCRIPTIONS_CLASS>
    <DESCRIPTIONS>
-    <SEOCOMPOTX>
-     <CMPNAME>EXECUTE</CMPNAME>
-     <LANGU>S</LANGU>
-     <DESCRIPT>Ejecuta Comando en sistema operativo</DESCRIPT>
-    </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>EXECUTE</CMPNAME>
      <LANGU>E</LANGU>
      <DESCRIPT>Ejecuta Comando en sistema operativo</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
-     <CMPNAME>GET_KERNEL_VERSION</CMPNAME>
+     <CMPNAME>EXECUTE</CMPNAME>
      <LANGU>S</LANGU>
+     <DESCRIPT>Ejecuta Comando en sistema operativo</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>GET_KERNEL_VERSION</CMPNAME>
+     <LANGU>E</LANGU>
      <DESCRIPT>obtiene la versión del kernel</DESCRIPT>
     </SEOCOMPOTX>
     <SEOCOMPOTX>
      <CMPNAME>GET_KERNEL_VERSION</CMPNAME>
-     <LANGU>E</LANGU>
+     <LANGU>S</LANGU>
      <DESCRIPT>obtiene la versión del kernel</DESCRIPT>
     </SEOCOMPOTX>
    </DESCRIPTIONS>
@@ -43,14 +37,14 @@
     <SEOSUBCOTX>
      <CMPNAME>EXECUTE</CMPNAME>
      <SCONAME>SRC</SCONAME>
-     <LANGU>S</LANGU>
-     <DESCRIPT>Código de retorno</DESCRIPT>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return code</DESCRIPT>
     </SEOSUBCOTX>
     <SEOSUBCOTX>
      <CMPNAME>EXECUTE</CMPNAME>
      <SCONAME>SRC</SCONAME>
-     <LANGU>E</LANGU>
-     <DESCRIPT>Return code</DESCRIPT>
+     <LANGU>S</LANGU>
+     <DESCRIPT>Código de retorno</DESCRIPT>
     </SEOSUBCOTX>
    </DESCRIPTIONS_SUB>
   </asx:values>
