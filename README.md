@@ -29,6 +29,16 @@ Importar con [abapGit](https://abapgit.org). Requiere ABAP 7.40 o superior. Sin 
 
 La clase también tiene el método privado `get_kernel_version`, que lee la versión del kernel con `CALL 'SAPCORE'`. Hoy no se usa ni se expone.
 
+## Recomendaciones para los comandos
+
+Pautas usadas en `ZCLFI160` (repo `frs_ZCLFI160`) para leer carpetas de un servidor Linux:
+
+- **`LC_ALL=C`** al inicio: la salida no se traduce ni cambia según el idioma del servidor, así se puede interpretar siempre igual.
+- **Formato fijo:** con `ls --time-style=+%Y%m%d%H%M%S` la fecha llega como `AAAAMMDDHHMMSS`, lista para pasar a tipos `D` y `T`.
+- **Ordenar y filtrar en el comando**, no en ABAP. Por ejemplo, `ls -t --group-directories-first` entrega carpetas primero y lo más reciente arriba, y `find -mindepth/-maxdepth -type d` devuelve solo lo que interesa.
+- **Rutas entre comillas simples**, con cada `'` interna escrita como `'\''`, para que espacios o caracteres especiales no alteren el comando.
+- **`2>&1`** para recibir los errores del comando en `rsl` y poder mostrarlos, o **`2>/dev/null`** para descartarlos.
+
 ## Seguridad
 
 `execute` ejecuta **cualquier** comando con el usuario del sistema operativo del servidor SAP (`<sid>adm`), sin chequeo de autorización. Quien pueda llamar a la clase puede leer, modificar o borrar archivos del servidor.
