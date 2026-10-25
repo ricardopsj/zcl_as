@@ -1,6 +1,6 @@
 # zcl_as — Utilidades del Application Server
 
-Utilidades para interactuar con el servidor de aplicaciones SAP. Hoy contiene la ejecución de comandos del sistema operativo.
+Utilidades para interactuar con el servidor de aplicaciones SAP: ejecución de comandos del sistema operativo y lectura de los directorios definidos en AL11.
 
 ```abap
 data: lt_salida type zcl_as=>tyt_string.
@@ -10,6 +10,9 @@ data(lv_rc) = zcl_as=>execute( exporting cmd = 'ls -l /usr/sap/trans'
 if lv_rc <> 0.
   " el comando no se pudo ejecutar
 endif.
+
+" ruta física de un directorio definido en AL11
+data(lv_ruta) = zcl_as=>get_user_dir( 'ZMULTICASH' ).
 ```
 
 ## Instalación
@@ -21,6 +24,7 @@ Importar con [abapGit](https://abapgit.org). Requiere ABAP 7.40 o superior. Sin 
 | Método | Descripción |
 |---|---|
 | `execute( cmd ) → src` | Ejecuta `cmd` en el sistema operativo del servidor de aplicaciones con la llamada de kernel `CALL 'SYSTEM'`. Devuelve `SY-SUBRC` y entrega la salida del comando en `rsl` (una línea por elemento, hasta 2048 caracteres cada una) |
+| `get_user_dir( alias ) → dirname` | Devuelve la ruta física (`USER_DIR-DIRNAME`) del alias definido en AL11, en *Configurar directorios propios* (tabla `USER_DIR`). Si el alias no existe, devuelve vacío |
 | `tyt_string` | Tipo tabla de `string` para la salida |
 
 La clase también tiene el método privado `get_kernel_version`, que lee la versión del kernel con `CALL 'SAPCORE'`. Hoy no se usa ni se expone.
