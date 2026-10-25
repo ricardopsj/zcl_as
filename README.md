@@ -38,6 +38,8 @@ Pautas usadas en `ZCLFI160` (repo `frs_ZCLFI160`) para leer carpetas de un servi
 - **Ordenar y filtrar en el comando**, no en ABAP. Por ejemplo, `ls -t --group-directories-first` entrega carpetas primero y lo más reciente arriba, y `find -mindepth/-maxdepth -type d` devuelve solo lo que interesa.
 - **Rutas entre comillas simples**, con cada `'` interna escrita como `'\''`, para que espacios o caracteres especiales no alteren el comando.
 - **`2>&1`** para recibir los errores del comando en `rsl` y poder mostrarlos, o **`2>/dev/null`** para descartarlos.
+- **Fines de línea:** `rsl` se corta en cada LF. Si el archivo viene de Windows (CR+LF) o usa solo CR, normalizarlo antes: `sed -e 's/\r$//' -e 's/\r/\n/g' -- '<ruta>' | head -n 1000`.
+- **Comando dentro de un string template (`|...|`):** `\r`, `\n` y `\t` se convierten en caracteres de control, y `|`, `{` y `}` tienen significado propio. Para que lleguen tal cual al shell, escribirlos como `\\r`, `\\n`, `\|`, `\{` y `\}`, o armar esa parte con un literal entre comillas invertidas (`` `...` ``), donde no hay secuencias de escape.
 
 ## Seguridad
 
